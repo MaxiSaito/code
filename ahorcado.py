@@ -7,9 +7,9 @@ import random
 import os
 
 
-facil=['arena','arbol','vacio','lapiz','gorra','pincel','imagen','sonido','flauta','mesa']
-medio=['libertad','teclado','avioneta','lenguaje','telefono','heladera','impresora','universo','salida','felino']
-dificil=['astronauta','madagascar','infraestructura','computadora','programacion','lenguaje','constelacion','aeroplano','aislamiento','interpretacion']
+facil = ['arena','arbol','vacio','lapiz','gorra','pincel','imagen','sonido','flauta','mesa']
+medio = ['libertad','teclado','avioneta','lenguaje','telefono','heladera','impresora','universo','salida','felino']
+dificil = ['astronauta','madagascar','infraestructura','computadora','programacion','lenguaje','constelacion','aeroplano','aislamiento','interpretacion']
 
 
 def lista(dif):
@@ -28,39 +28,39 @@ def hombre(intento):
     """
     Imprime por pantalla el stickman dependiendo del parametro dado
     """
-    if intento==0:
+    if intento == 0:
         print('___________\n|\n|\n|\n|')
-    elif intento==1:
+    elif intento == 1:
         print('___________\n|\n|      (o.o)\n|\n|')
-    elif intento==2:
+    elif intento == 2:
         print('___________\n|\n|      (o.o)\n|       ( ) \n|')
-    elif intento==3:
+    elif intento == 3:
         print('___________\n|\n|      (o.o)\n|      /( )\n|')
-    elif intento==4:
+    elif intento == 4:
         print('___________\n|\n|      (u.u)\n|      /( )\ \n|')
-    elif intento==5:
+    elif intento == 5:
         print('___________\n|\n|      (T.T)\n|      /( )\ \n|       /')
-    elif intento==6:
+    elif intento == 6:
         print('___________\n|\n|      (T.T)\n|      /( )\ \n|       / \ ')
-    elif intento==7:
+    elif intento == 7:
         print('___________\n|        |\n|      (x_x)\n|      /( )\ \n|       / \ ')
 
 def control(word,vacio,letra):
     """
     Recibe la lista con los caracteres de la palabra, la lista vacia con la misma cantidad de "_", y la letra a buscar
     """
-    y="" #defino la string que me muestra mi progreso
+    y = "" #defino la string que me muestra mi progreso
     global intentos 
     global flag
-    flag=0 #reinicio de bandera
+    flag = 0 #reinicio de bandera
     for x in range(len(word)): #recorro la palabra en busca de coincidencias y si las encuentra reemplaza ese caracter en la lista "vacio"
-        if letra == word[x]:
+        if letra.lower() == word[x]:
             vacio[x]=letra
-            flag=1
+            flag = 1
     for x in vacio: #pasa los caracteres de la  lista "vacio" a la string para imprimirla
         y += x
     if list(y)==word: #Si el contenido de "vacio" es igual a la palabra. Condicion de victoria
-        flag=3
+        flag = 3
     elif flag == 1: #cuando se encuentra una coincidencia
         print('Bien!')    
         print(y)
@@ -74,11 +74,11 @@ def juego():
     """
     Bucle central donde sucede la magia
     """
-    vacio=[] 
-    print('JUEGO DEL AHORCADO\nSeleccione una dificultad! \n1. Fácil\n2. Medio\n3. Difícil')
-    x=int(input('>'))
-    palabra=lista(x)    #llamo a la funcion que me trae una palabra aleatoria de la lista dependiendod de la difucultad
-    word=list(palabra)   #convierto la palabra en una lista que contiene todos los caracteres por separados
+    vacio = [] 
+    print('JUEGO DEL AHORCADO\nSeleccione una dificultad! \n1. Facil\n2. Medio\n3. Dificil')
+    x = int(input('>'))
+    palabra = lista(x)    #llamo a la funcion que me trae una palabra aleatoria de la lista dependiendod de la difucultad
+    word = list(palabra)   #convierto la palabra en una lista que contiene todos los caracteres por separados
     for x in range(len(word)): #relleno la lista "vacio" de "_" con la cantidad de caracteres que tiene la palabra a adivinar
         vacio.append('_')
     largo=len(palabra)  #guardo el largo de la palabra para mostrarlo como ayuda 
@@ -86,7 +86,7 @@ def juego():
     while True:
         print(f'\nLa palabra tiene {largo} letras') #muestro la ayuda
         hombre(intentos)    #imprimo al stickman dependiendo de los intentos fallidos que llevo
-        letra=input('\nIngrese Letra: ')
+        letra = input('\nIngrese Letra: ')
         os.system('cls')
         control(word,vacio,letra) #llamo a la funcion de control
         if intentos == 7: #condicion derrota
@@ -105,7 +105,7 @@ def juego():
 seguir='si'
 intentos=0
 flag=0
-while seguir.lower()=='si':
+while seguir.lower()=='si' or seguir.lower()=='s' :
     juego()
     print('\nDesea seguir jugando? si/no')
     seguir=input()
