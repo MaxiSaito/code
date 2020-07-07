@@ -55,7 +55,7 @@ def control(word,vacio,letra):
     flag = 0 #reinicio de bandera
     for x in range(len(word)): #recorro la palabra en busca de coincidencias y si las encuentra reemplaza ese caracter en la lista "vacio"
         if letra.lower() == word[x]:
-            vacio[x]=letra
+            vacio[x]=letra.lower()
             flag = 1
     for x in vacio: #pasa los caracteres de la  lista "vacio" a la string para imprimirla
         y += x
@@ -77,6 +77,11 @@ def juego():
     vacio = [] 
     print('JUEGO DEL AHORCADO\nSeleccione una dificultad! \n1. Facil\n2. Medio\n3. Dificil')
     x = int(input('>'))
+    while x>3 or x<=0:
+        os.system('cls')
+        print('Opcion Incorrecta. Ingrese nuevamente')
+        print('1. Facil\n2. Medio\n3. Dificil')
+        x = int(input('>'))
     palabra = lista(x)    #llamo a la funcion que me trae una palabra aleatoria de la lista dependiendod de la difucultad
     word = list(palabra)   #convierto la palabra en una lista que contiene todos los caracteres por separados
     for x in range(len(word)): #relleno la lista "vacio" de "_" con la cantidad de caracteres que tiene la palabra a adivinar
