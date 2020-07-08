@@ -75,13 +75,18 @@ def juego():
     Bucle central donde sucede la magia
     """
     vacio = [] 
-    print('JUEGO DEL AHORCADO\nSeleccione una dificultad! \n1. Facil\n2. Medio\n3. Dificil')
-    x = int(input('>'))
-    while x>3 or x<=0:
-        os.system('cls')
-        print('Opcion Incorrecta. Ingrese nuevamente')
-        print('1. Facil\n2. Medio\n3. Dificil')
-        x = int(input('>'))
+    print('**** Juego del Ahorcado ****')
+    while True:
+        try:
+            print('Seleccione una dificultad! \n1. Facil\n2. Medio\n3. Dificil')
+            x = int(input('>'))
+            if x>0 and x<4:
+                break
+            os.system('cls')
+            print('Opcion invalida. Ingrese nuevamente')
+        except:
+            os.system('cls')
+            print('Opcion invalida. Ingrese nuevamente')
     palabra = lista(x)    #llamo a la funcion que me trae una palabra aleatoria de la lista dependiendod de la difucultad
     word = list(palabra)   #convierto la palabra en una lista que contiene todos los caracteres por separados
     for x in range(len(word)): #relleno la lista "vacio" de "_" con la cantidad de caracteres que tiene la palabra a adivinar
@@ -107,12 +112,16 @@ def juego():
             break
         
         
-seguir='si'
+seguir='s'
 intentos=0
 flag=0
-while seguir.lower()=='si' or seguir.lower()=='s' :
+while seguir.lower()=='si' or seguir.lower()=='s':
     juego()
     print('\nDesea seguir jugando? si/no')
-    seguir=input()
-    intentos=0 #reinicio los intentos a 0
-    os.system('cls')
+    seguir = input('>')
+    intentos = 0 #reinicio los intentos a 0
+    while seguir.lower()!='si' and seguir.lower()!='s' and seguir.lower()!='no' and seguir.lower()!='n':
+        print('Opcion invalida.')
+        seguir = input('>')
+    if seguir.lower()=='no' or seguir.lower()=='n':
+        break
